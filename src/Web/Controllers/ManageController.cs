@@ -343,13 +343,13 @@ public class ManageController : Controller
     [HttpGet]
     public IActionResult ShowRecoveryCodes()
     {
-        var _recoveryCodes = (string[]?)TempData[RecoveryCodesKey];
-        if (_recoveryCodes == null)
+        var recoveryCodes = (string[]?)TempData[RecoveryCodesKey];
+        if (recoveryCodes == null)
         {
             return RedirectToAction(nameof(TwoFactorAuthentication));
         }
 
-        var model = new ShowRecoveryCodesViewModel { RecoveryCodes = _recoveryCodes };
+        var model = new ShowRecoveryCodesViewModel { RecoveryCodes = recoveryCodes };
         return View(model);
     }
 

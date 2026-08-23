@@ -18,8 +18,8 @@ public class GetMyOrdersHandler : IRequestHandler<GetMyOrders, IEnumerable<Order
     public async ValueTask<IEnumerable<OrderViewModel>> Handle(GetMyOrders request,
         CancellationToken cancellationToken)
     {
-        var specification = new CustomerOrdersSpecification(request.UserName);
-        var orders = await _orderRepository.ListAsync(specification, cancellationToken);
+        var spec = new CustomerOrdersSpecification(request.UserName);
+        var orders = await _orderRepository.ListAsync(spec, cancellationToken);
 
         return orders.Select(o => new OrderViewModel
         {
