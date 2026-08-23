@@ -27,9 +27,9 @@ public class CatalogBrandListEndpoint(IRepository<CatalogBrand> catalogBrandRepo
     {
         var response = new ListCatalogBrandsResponse();
 
-        var items = await catalogBrandRepository.ListAsync(ct);
+        var _catalogBrandsRaw = await catalogBrandRepository.ListAsync(ct);
 
-        response.CatalogBrands.AddRange(items.Select(mapper.Map<CatalogBrandDto>));
+        response.CatalogBrands.AddRange(_catalogBrandsRaw.Select(mapper.Map<CatalogBrandDto>));
 
         return response;
     }
